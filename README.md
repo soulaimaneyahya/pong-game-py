@@ -5,7 +5,7 @@
 
 *A: See with your eyes!*
 
-![Game Image](./img/ping-pong.png)
+![Game Image](https://raw.githubusercontent.com/soulaimaneyahya/PongGamePy/main/img/ping-pong.png)
 
 __How to play?__
 
