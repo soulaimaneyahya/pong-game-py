@@ -77,10 +77,10 @@ while True:
     #border check
     if ball.ycor() > 290:
         ball.sety(290)
-        ball.dy *= -1
+        ball.dy *= -1 #reverse dire
 
     if ball.xcor() > 390:
-        ball.goto(0,0)
+        ball.goto(0,0) # go to center
         ball.dx *= -1
 
     if ball.ycor() < -290:
