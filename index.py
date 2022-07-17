@@ -15,7 +15,7 @@ water.shape("square")
 water.color("blue")
 water.penup()
 water.goto(-350, 0)
-water.shapesize(stretch_wid=5, stretch_len=2)
+water.shapesize(stretch_wid=5, stretch_len=1)
 
 #fire
 fire = turtle.Turtle()
@@ -24,7 +24,7 @@ fire.shape("square")
 fire.color("red")
 fire.penup()
 fire.goto(350, 0)
-fire.shapesize(stretch_wid=5, stretch_len=2)
+fire.shapesize(stretch_wid=5, stretch_len=1)
 
 #ball
 ball = turtle.Turtle()
@@ -33,6 +33,9 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
+# delta, rate of change
+ball.dx = 0.2
+ball.dy = 0.2
 
 #functions
 def water_up():
@@ -67,3 +70,23 @@ wind.onkeypress(fire_down, "Down")
 # main game loop
 while True:
     wind.update() #updates the screen everytime the loop run
+    # move th ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    #border check
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+
+    if ball.xcor() > 390:
+        ball.goto(0,0)
+        ball.dx *= -1
+
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+
+    if ball.xcor() < -390:
+        ball.goto(0,0)
+        ball.dx *= -1
