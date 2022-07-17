@@ -34,31 +34,35 @@ ball.color("white")
 ball.penup()
 ball.goto(0, 0)
 # delta, rate of change
-ball.dx = 0.2
-ball.dy = 0.2
+ball.dx = 0.1
+ball.dy = 0.1
 
 #functions
 def water_up():
     y = water.ycor()
-    y += 20
-    water.sety(y)
+    if water.ycor() < 250:
+        y += 20
+        water.sety(y)
 
 
 def water_down():
     y = water.ycor()
-    y -= 20
-    water.sety(y)
+    if water.ycor() > -250:
+        y -= 20
+        water.sety(y)
 
 
 def fire_up():
     y = fire.ycor()
-    y += 20
-    fire.sety(y)
+    if fire.ycor() < 250:
+        y += 20
+        fire.sety(y)
 
 def fire_down():
     y = fire.ycor()
-    y -= 20
-    fire.sety(y)
+    if fire.ycor() > -250:
+        y -= 20
+        fire.sety(y)
 
 # keyboard binding
 wind.listen()
@@ -90,3 +94,13 @@ while True:
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
+
+    # ball collision
+    if (ball.xcor() > 330 and ball.xcor() < 340) and (ball.ycor() > fire.ycor() -50 and ball.ycor() < fire.ycor() + 40):
+        ball.setx(330)
+        ball.dx *= -1
+
+    if (ball.xcor() < -330 and ball.xcor() > -340) and (ball.ycor() > water.ycor() -50 and water.ycor() < water.ycor() + 40):
+        ball.setx(-330)
+        ball.dx *= -1
+
