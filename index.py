@@ -34,8 +34,19 @@ ball.color("white")
 ball.penup()
 ball.goto(0, 0)
 # delta, rate of change
-ball.dx = 0.1
-ball.dy = 0.1
+ball.dx = 0.2
+ball.dy = 0.2
+
+#score
+score1 = 0
+score2 = 0
+score = turtle.Turtle()
+score.speed(0)
+score.color("white")
+score.penup()
+score.hideturtle()
+score.goto(0, 250)
+score.write("water: {}    fire: {}".format(score1, score2), align="center", font=("Courier", 18, "normal"))
 
 #functions
 def water_up():
@@ -85,15 +96,23 @@ while True:
 
     if ball.xcor() > 390:
         ball.goto(0,0) # go to center
+        score1 += 1
         ball.dx *= -1
+        score.clear()
+        score.write("water: {}    fire: {}".format(score1, score2), align="center", font=("Courier", 18, "normal"))
+
 
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
 
     if ball.xcor() < -390:
+        score2 += 1
         ball.goto(0,0)
         ball.dx *= -1
+        score.clear()
+        score.write("water: {}    fire: {}".format(score1, score2), align="center", font=("Courier", 18, "normal"))
+
 
     # ball collision
     if (ball.xcor() > 330 and ball.xcor() < 340) and (ball.ycor() > fire.ycor() -50 and ball.ycor() < fire.ycor() + 40):
